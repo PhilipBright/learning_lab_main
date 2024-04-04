@@ -1,0 +1,6 @@
+[submodule "admins"]
+	path = admins
+	url = https://github.com/PhilipBright/learning_lab_admin.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/PhilipBright/learning_lab_client.git

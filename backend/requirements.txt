@@ -1,0 +1,6 @@
+Flask
+Flask-PyMongo
+pymongo[srv]
+psycopg2-binary
+Flask-SQLAlchemy
+Flask-CORS

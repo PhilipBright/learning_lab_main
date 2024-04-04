@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  # Flask service
+  flaskapp:
+    container_name: flaskapp
+    build:
+      context: ./backend
+      dockerfile: flask.dockerfile
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb+srv://Philip:Myanmar2023@cluster0.cze7alr.mongodb.net/learningLab?retryWrites=true&w=majority
+
+
+  # Next.js service
+  nextapp:
+    container_name: nextapp
+    build:
+      context: ./frontend
+      dockerfile: next.dockerfile
+    ports:
+      - "3100:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000 
+    depends_on:
+      - flaskapp
+    
+
+  # Admin service (assuming it's also a Next.js or similar web service)
+  admin:
+    container_name: admin
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    ports:
+      - "3500:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+    depends_on:
+      - flaskapp
+
+# No MongoDB service definition is needed since you're using MongoDB Atlas
